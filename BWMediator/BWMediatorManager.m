@@ -151,8 +151,8 @@ const NSInteger BWModuleInvokeError = 500;
     NSMutableArray *retainedArguments = [NSMutableArray array];
     [invocation bw_setArgumentWithArgs:argList retainedArguments:retainedArguments];
     [invocation retainArguments];
-    __block id returnObj = nil;
-    dispatch_async(queue, ^{
+//    __block id returnObj = nil;
+//    dispatch_async(queue, ^{
         [invocation invoke];
         
         if (retainedArguments.count > 0) {
@@ -165,11 +165,9 @@ const NSInteger BWModuleInvokeError = 500;
             }
         }
         
-        returnObj = [invocation bw_returnValue];
-    });
-    
-    
-    
+       id returnObj = [invocation bw_returnValue];
+//    });
+
     return returnObj;
 }
 

@@ -25,11 +25,12 @@ BW_KeyValue_EXPORT(@"BWTabBarModuleService", @"BWTabBarProtocolImpl", 0)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {
     NSLog(@"ModulesImpl:%@", NSStringFromClass(self.class));
+    
     UIWindow *window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
     BWTabBarController *tabBarController = [[BWTabBarController alloc] init];
 
-    tabBarController.tabBar.translucent = NO;
+    
     window.rootViewController = tabBarController;
     window.backgroundColor = [UIColor whiteColor];
     [window makeKeyAndVisible];

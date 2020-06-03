@@ -19,22 +19,29 @@
     [super viewDidLoad];
     
     
-    NSDictionary *tabBarItemtitleColor = [NSDictionary dictionaryWithObject:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
+    NSDictionary *tabBarItemtitleColor = [NSDictionary dictionaryWithObject:[UIColor redColor] forKey:NSForegroundColorAttributeName];
     UIViewController *homeViewController = [BWScheduler performWithProtocol:@protocol(BWHomepageModuleService) selector:@selector(homeViewController)];
     homeViewController.navigationItem.title = @"首页";
     homeViewController.tabBarItem.title = @"首页";
-    homeViewController.tabBarItem.image = [[UIImage imageNamed:@"tab_home_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    homeViewController.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_home_h_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    homeViewController.tabBarItem.image = [[UIImage imageNamed:@"tab_home_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    homeViewController.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_home_h_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [homeViewController.tabBarItem setTitleTextAttributes:tabBarItemtitleColor forState:UIControlStateSelected];
-    [self addChildViewController:[[UINavigationController alloc] initWithRootViewController:homeViewController]];
 
     UIViewController *loginViewController = [BWScheduler performWithProtocol:@protocol(BWAccountModuleService) selector:@selector(loginViewController)];
-    //    vc5.navigationItem.title = @"我的";
+    loginViewController.navigationItem.title = @"我的";
     loginViewController.tabBarItem.title = @"我的";
-    loginViewController.tabBarItem.image = [[UIImage imageNamed:@"tab_profile_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    loginViewController.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_profile_h_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    loginViewController.tabBarItem.image = [[UIImage imageNamed:@"tab_profile_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    loginViewController.tabBarItem.selectedImage = [[UIImage imageNamed:@"tab_profile_h_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [loginViewController.tabBarItem setTitleTextAttributes:tabBarItemtitleColor forState:UIControlStateSelected];
-    [self addChildViewController:[[UINavigationController alloc] initWithRootViewController:loginViewController]];
+    
+    self.viewControllers = @[
+        [[UINavigationController alloc] initWithRootViewController:homeViewController],
+        [[UINavigationController alloc] initWithRootViewController:loginViewController]
+    ];
+    
+    self.tabBar.translucent = NO;
+    self.tabBar.backgroundColor = UIColor.whiteColor;
+    self.tabBar.tintColor = UIColor.redColor;
 }
 
 @end
