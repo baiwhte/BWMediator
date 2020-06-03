@@ -16,25 +16,12 @@ static const BWModulePriority BWModulePriorityHigh = 750;
 static const BWModulePriority BWModulePriorityDefault = 500;
 static const BWModulePriority BWModulePriorityLow = 250;
 
-/**
- * Make global functions usable in C++
- */
-#if defined(__cplusplus)
-#define SCM_EXTERN extern "C" __attribute__((visibility("default")))
-#define SCM_EXTERN_C_BEGIN extern "C" {
-#define SCM_EXTERN_C_END }
-#else
-#define SCM_EXTERN extern __attribute__((visibility("default")))
-#define SCM_EXTERN_C_BEGIN
-#define SCM_EXTERN_C_END
-#endif
-
 struct BW_KeyValue {
     __unsafe_unretained NSString *key;
     __unsafe_unretained NSString *value;
 };
 
-#define BW_KeyValue_EXPORT(key, value, idx) __attribute__((used, section("__SCM,__scm.data"))) \
+#define BW_KeyValue_EXPORT(key, value, idx) __attribute__((used, section("__DATA,__mediator.data"))) \
 static const struct BW_KeyValue __BW##idx= (struct BW_KeyValue){key, value};
 
 FOUNDATION_EXPORT NSString *const BWErrorDomain;

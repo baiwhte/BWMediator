@@ -12,7 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BWTabBarController : UITabBarController
 
-- (instancetype)initWithViewControllers:(NSArray<UIViewController *> *)viewControllers;
 
 @end
 

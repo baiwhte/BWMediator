@@ -12,7 +12,7 @@
 
 @implementation BWAccountProtocolImpl
 
-//BW_KeyValue_EXPORT(@"BWAccountModuleService", @"BWAccountProtocolImpl", 0)
+BW_KeyValue_EXPORT(@"BWAccountModuleService", @"BWAccountProtocolImpl", 0)
 
 - (UIViewController *)loginViewController;
 {

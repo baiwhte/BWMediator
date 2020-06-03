@@ -75,7 +75,7 @@ NSDictionary<NSString*, Class>* BWGetAllModules(void) {
     dladdr((const void *)&BWGetAllModules, &info);
     
     const BWExportValue mach_header = (BWExportValue)info.dli_fbase;
-    const BWExportSection *section = BWGetSectByNameFromHeader((void *)mach_header, "__SCM", "__scm.data");
+    const BWExportSection *section = BWGetSectByNameFromHeader((void *)mach_header, "__DATA", "__mediator.data");
     if (section == NULL) return nil;
     
     int addrOffset = sizeof(struct BW_KeyValue);

@@ -168,6 +168,8 @@ const NSInteger BWModuleInvokeError = 500;
         returnObj = [invocation bw_returnValue];
     });
     
+    
+    
     return returnObj;
 }
 

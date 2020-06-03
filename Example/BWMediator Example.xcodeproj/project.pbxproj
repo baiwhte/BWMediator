@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3611D3AA2485DAD6008642B4 /* libModuleService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611D3952485100E008642B4 /* libModuleService.a */; };
-		3611D3AB2485DADA008642B4 /* libHomepage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611D3A52485101B008642B4 /* libHomepage.a */; };
 		36312C0824850A56007792F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36312C0724850A56007792F6 /* AppDelegate.m */; };
 		36312C0E24850A56007792F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36312C0D24850A56007792F6 /* ViewController.m */; };
 		36312C1124850A56007792F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36312C0F24850A56007792F6 /* Main.storyboard */; };
 		36312C1324850A5A007792F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36312C1224850A5A007792F6 /* Assets.xcassets */; };
 		36312C1624850A5A007792F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36312C1424850A5A007792F6 /* LaunchScreen.storyboard */; };
 		36312C1924850A5A007792F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36312C1824850A5A007792F6 /* main.m */; };
+		36423FB724875961009E3CE5 /* libHomepage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36423F35248751EC009E3CE5 /* libHomepage.a */; };
 		36604E012485E6C900BB1EB1 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36604E002485E6C900BB1EB1 /* Other.swift */; };
 		36604E4F2485EF8800BB1EB1 /* libAccount.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611D38E24851009008642B4 /* libAccount.a */; };
 		36604E502485EF8800BB1EB1 /* libTabBarController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611D39D24851014008642B4 /* libTabBarController.a */; };
@@ -49,33 +49,40 @@
 			remoteGlobalIDString = 4CE211B720A0575C000137EA;
 			remoteInfo = TabBarController;
 		};
-		3611D3A42485101B008642B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE211B720A0575C000137EA;
-			remoteInfo = Homepage;
-		};
-		3611D3A62485101B008642B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE211C720A0577E000137EA;
-			remoteInfo = HomepageTests;
-		};
-		3611D3A82485101B008642B4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4CE211E620A0800C000137EA;
-			remoteInfo = HomepageBundle;
-		};
 		3611D3AE2485DAE0008642B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3611D38F2485100E008642B4 /* BWModuleService.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 4CE211B620A0575C000137EA;
 			remoteInfo = ModuleService;
+		};
+		36423F34248751EC009E3CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE211B720A0575C000137EA;
+			remoteInfo = Homepage;
+		};
+		36423F36248751EC009E3CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE211C720A0577E000137EA;
+			remoteInfo = HomepageTests;
+		};
+		36423F38248751EC009E3CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4CE211E620A0800C000137EA;
+			remoteInfo = HomepageBundle;
+		};
+		36423FB52487595A009E3CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CE211B620A0575C000137EA;
+			remoteInfo = Homepage;
 		};
 		36604E512485EF9300BB1EB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -97,7 +104,6 @@
 		3611D38924851009008642B4 /* BWAccount.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BWAccount.xcodeproj; path = Modules/BWAccount/BWAccount.xcodeproj; sourceTree = "<group>"; };
 		3611D38F2485100E008642B4 /* BWModuleService.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BWModuleService.xcodeproj; path = Modules/BWModuleService/BWModuleService.xcodeproj; sourceTree = "<group>"; };
 		3611D39824851014008642B4 /* BWTabBarController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BWTabBarController.xcodeproj; path = Modules/BWTabBarController/BWTabBarController.xcodeproj; sourceTree = "<group>"; };
-		3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BWHomepage.xcodeproj; path = Modules/BWHomepage/BWHomepage.xcodeproj; sourceTree = "<group>"; };
 		36312C0324850A56007792F6 /* BWMediator Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BWMediator Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36312C0624850A56007792F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		36312C0724850A56007792F6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 		36312C1524850A5A007792F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36312C1724850A5A007792F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36312C1824850A5A007792F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BWHomepage.xcodeproj; path = Modules/BWHomepage/BWHomepage.xcodeproj; sourceTree = "<group>"; };
 		36604E002485E6C900BB1EB1 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,9 +123,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36423FB724875961009E3CE5 /* libHomepage.a in Frameworks */,
 				36604E4F2485EF8800BB1EB1 /* libAccount.a in Frameworks */,
 				36604E502485EF8800BB1EB1 /* libTabBarController.a in Frameworks */,
-				3611D3AB2485DADA008642B4 /* libHomepage.a in Frameworks */,
 				3611D3AA2485DAD6008642B4 /* libModuleService.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,20 +158,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3611D39F2485101A008642B4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3611D3A52485101B008642B4 /* libHomepage.a */,
-				3611D3A72485101B008642B4 /* HomepageTests.xctest */,
-				3611D3A92485101B008642B4 /* HomepageBundle.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		36312BFA24850A56007792F6 = {
 			isa = PBXGroup;
 			children = (
-				3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */,
+				36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */,
 				3611D39824851014008642B4 /* BWTabBarController.xcodeproj */,
 				3611D38F2485100E008642B4 /* BWModuleService.xcodeproj */,
 				3611D38924851009008642B4 /* BWAccount.xcodeproj */,
@@ -206,6 +203,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		36423F2F248751EC009E3CE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36423F35248751EC009E3CE5 /* libHomepage.a */,
+				36423F37248751EC009E3CE5 /* HomepageTests.xctest */,
+				36423F39248751EC009E3CE5 /* HomepageBundle.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,6 +227,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				36423FB62487595A009E3CE5 /* PBXTargetDependency */,
 				36604E522485EF9300BB1EB1 /* PBXTargetDependency */,
 				36604E542485EF9300BB1EB1 /* PBXTargetDependency */,
 				3611D3AF2485DAE0008642B4 /* PBXTargetDependency */,
@@ -261,8 +269,8 @@
 					ProjectRef = 3611D38924851009008642B4 /* BWAccount.xcodeproj */;
 				},
 				{
-					ProductGroup = 3611D39F2485101A008642B4 /* Products */;
-					ProjectRef = 3611D39E2485101A008642B4 /* BWHomepage.xcodeproj */;
+					ProductGroup = 36423F2F248751EC009E3CE5 /* Products */;
+					ProjectRef = 36423F2E248751EC009E3CE5 /* BWHomepage.xcodeproj */;
 				},
 				{
 					ProductGroup = 3611D3902485100E008642B4 /* Products */;
@@ -309,25 +317,25 @@
 			remoteRef = 3611D39C24851014008642B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3611D3A52485101B008642B4 /* libHomepage.a */ = {
+		36423F35248751EC009E3CE5 /* libHomepage.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libHomepage.a;
-			remoteRef = 3611D3A42485101B008642B4 /* PBXContainerItemProxy */;
+			remoteRef = 36423F34248751EC009E3CE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3611D3A72485101B008642B4 /* HomepageTests.xctest */ = {
+		36423F37248751EC009E3CE5 /* HomepageTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = HomepageTests.xctest;
-			remoteRef = 3611D3A62485101B008642B4 /* PBXContainerItemProxy */;
+			remoteRef = 36423F36248751EC009E3CE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3611D3A92485101B008642B4 /* HomepageBundle.bundle */ = {
+		36423F39248751EC009E3CE5 /* HomepageBundle.bundle */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = HomepageBundle.bundle;
-			remoteRef = 3611D3A82485101B008642B4 /* PBXContainerItemProxy */;
+			remoteRef = 36423F38248751EC009E3CE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -364,6 +372,11 @@
 			isa = PBXTargetDependency;
 			name = ModuleService;
 			targetProxy = 3611D3AE2485DAE0008642B4 /* PBXContainerItemProxy */;
+		};
+		36423FB62487595A009E3CE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Homepage;
+			targetProxy = 36423FB52487595A009E3CE5 /* PBXContainerItemProxy */;
 		};
 		36604E522485EF9300BB1EB1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
