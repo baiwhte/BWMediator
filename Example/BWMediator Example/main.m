@@ -2,7 +2,7 @@
 //  main.m
 //  BWMediator Example
 //
-//  Created by CHENXIUWU699 on 2020/6/1.
+//  Created by baiwhte on 2020/6/1.
 //  Copyright © 2020 baiwhte. All rights reserved.
 //
 

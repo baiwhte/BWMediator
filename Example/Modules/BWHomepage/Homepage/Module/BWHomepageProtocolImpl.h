@@ -2,8 +2,8 @@
 //  SCHomepageProtocolImpl.h
 //  Homepage
 //
-//  Created by 陈修武 on 2019/12/10.
-//  Copyright © 2019 pingan.inc. All rights reserved.
+//  Created by baiwhte on 2019/12/10.
+//  Copyright © 2019 baiwhte.inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

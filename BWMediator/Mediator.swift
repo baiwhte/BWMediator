@@ -2,7 +2,7 @@
 //  Mediator.swift
 //  BWMediator
 //
-//  Created by CHENXIUWU699 on 2020/5/29.
+//  Created by baiwhte on 2020/5/29.
 //  Copyright © 2020 baiwhte. All rights reserved.
 //
 

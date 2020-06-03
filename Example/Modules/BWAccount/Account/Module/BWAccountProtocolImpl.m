@@ -2,8 +2,8 @@
 //  BWAccountProtocolImpl.m
 //  Account
 //
-//  Created by CHENXIUWU699 on 2020/6/2.
-//  Copyright © 2020 pingan.inc. All rights reserved.
+//  Created by baiwhte on 2020/6/2.
+//  Copyright © 2020 baiwhte.inc. All rights reserved.
 //
 
 #import "BWAccountProtocolImpl.h"
