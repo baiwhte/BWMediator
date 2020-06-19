@@ -25,10 +25,10 @@ const NSInteger BWModuleInvokeError = 500;
 
 @property (nonatomic, strong) Mediator *mediator;
 
-@property (nonatomic, strong) dispatch_queue_t methodQueue;
-//
 @property (nonatomic, strong) NSDictionary *moduleClasses;
 @property (nonatomic, strong) NSArray<NSString *> *sortedModules;
+
+@property (nonatomic, strong) NSOperationQueue  *methodQueue;
 
 @end
 
@@ -47,7 +47,9 @@ const NSInteger BWModuleInvokeError = 500;
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.methodQueue   = dispatch_queue_create("com.bwmediator.method", DISPATCH_QUEUE_CONCURRENT);
+        self.methodQueue  = [[NSOperationQueue alloc] init];
+        self.methodQueue.name = @"com.bwmediator.method";
+        self.methodQueue.maxConcurrentOperationCount = 3;
         self.mediator      = Mediator.shared;
         self.moduleClasses = BWGetAllModules();
     }
@@ -61,24 +63,14 @@ const NSInteger BWModuleInvokeError = 500;
 - (id)invokeWithProtocol:(Protocol *)protocol priority:(NSInteger)priority selector:(SEL)selector arguments:(va_list)argList;
 {
     NSString *protocolKey = NSStringFromProtocol(protocol);
-    NSObject *target = [self objectWithProtocol:protocol];
+    id target = [self objectWithProtocol:protocol];
     
-    if ( nil == target || [target.class priority] < priority ) {
+    if ( nil == target || [((NSObject *)target).class priority] < priority ) {
         return nil;
     }
-    
-    NSDictionary *userInfo = @{
-        NSLocalizedDescriptionKey : [NSString stringWithFormat:@"未找到\"%@\"的实现类", protocolKey],
-    };
-    
-    
-    if (! [target respondsToSelector:selector]) {
-        __weak id<BWMediatorProtocol> delegate = (id<BWMediatorProtocol>)target;
-        if ([delegate respondsToSelector:@selector(errors:)]) {
-            [delegate errors:[NSError errorWithDomain:BWErrorDomain
-                                                 code:BWModuleInvokeError
-                                             userInfo:userInfo]];
-        }
+    if (![target respondsToSelector:selector]) {
+        [self sendError:target
+        message:[NSString stringWithFormat:@"未找到\"%@\"的实现类", protocolKey]];
         return nil;
     }
     
@@ -115,34 +107,49 @@ const NSInteger BWModuleInvokeError = 500;
     return object;
 }
 
+- (void)sendError:(id<BWMediatorProtocol>)target message:(NSString *)message; {
+    if (! target || ! message) {
+        return;
+    }
+    NSDictionary *userInfo = @{
+        NSLocalizedDescriptionKey : message,
+    };
+    
+    if ([target respondsToSelector:@selector(errors:)]) {
+        [target errors:[NSError errorWithDomain:BWErrorDomain
+                                           code:BWModuleInvokeError
+                                       userInfo:userInfo]];
+    }
+}
+
+- (NSInvocation *)invocationWithTarget:(id)target selector:(SEL)selector; {
+    NSMethodSignature *signature = [target methodSignatureForSelector:selector];
+    if (! signature) {
+        [self sendError:target
+                message:[NSString stringWithFormat:@"未找到\"%@\"的实现类", target]];
+    }
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:selector];
+    [invocation setTarget:target];
+    return invocation;
+}
+
 - (id)invokeWithTarget:(id)target selector:(SEL)selector arguments:(va_list)argList;
 {
     NSMethodSignature *signature = [target methodSignatureForSelector:selector];
     __weak id<BWMediatorProtocol> delegate = (id<BWMediatorProtocol>)target;
     if ( signature == nil ) {
-        NSDictionary *userInfo = @{
-            NSLocalizedDescriptionKey : [NSString stringWithFormat:@"未找到\"%@\"的实现类", target],
-        };
-        
-#if !DEBUG
-        NSString *msg = [NSString stringWithFormat:@"%@ 没有实现 %@ 方法",
-                         target, NSStringFromSelector(selector)];
-        @throw [NSException exceptionWithName:@"方法调用错误" reason:msg userInfo:userInfo];
-#else
-        if ([delegate respondsToSelector:@selector(errors:)]) {
-            [delegate errors:[NSError errorWithDomain:BWErrorDomain
-                                                 code:BWModuleInvokeError
-                                             userInfo:userInfo]];
-        }
-#endif
+        [self sendError:target
+                message:[NSString stringWithFormat:@"未找到\"%@\"的实现类", target]];
         return nil;
     }
-    dispatch_queue_t queue = NULL;
-    if ([delegate respondsToSelector:@selector(methodQueue)]) {
-        queue = [delegate methodQueue];
+    BOOL isMainThread = NO;
+    NSOperationQueue *queue = self.methodQueue;
+    if ([delegate respondsToSelector:@selector(isMainThread)]) {
+        isMainThread = [delegate isMainThread];
     }
-    if (queue == NULL) {
-        queue = self.methodQueue;
+    if (isMainThread) {
+        queue = NSOperationQueue.mainQueue;
     }
 
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -151,23 +158,34 @@ const NSInteger BWModuleInvokeError = 500;
     NSMutableArray *retainedArguments = [NSMutableArray array];
     [invocation bw_setArgumentWithArgs:argList retainedArguments:retainedArguments];
     [invocation retainArguments];
-//    __block id returnObj = nil;
-//    dispatch_async(queue, ^{
+
+    if (isMainThread && NSOperationQueue.currentQueue == NSOperationQueue.mainQueue) {
         [invocation invoke];
+    } else {
         
-        if (retainedArguments.count > 0) {
-            for (NSValue   *value in retainedArguments) {
-                void *pointer = [value pointerValue];
-                id obj = *((__unsafe_unretained id *)pointer);
-                if (obj) {
-                    CFRetain((__bridge CFTypeRef)(obj));
-                }
+        NSInvocationOperation *operation
+         = [[NSInvocationOperation alloc] initWithInvocation:invocation];
+        /** If an exception was raised during the execution of the method or invocation,
+         *  accessing this property raises that exception again. If the operation was
+         *  cancelled or the invocation or method has a void return type, accessing
+         *  this property raises an exception; see Result Exceptions.
+         */
+        //id returnObj = operation.result;
+        [queue addOperations:@[operation] waitUntilFinished:YES];
+        
+    }
+    
+    if (retainedArguments.count > 0) {
+        for (NSValue   *value in retainedArguments) {
+            void *pointer = [value pointerValue];
+            id obj = *((__unsafe_unretained id *)pointer);
+            if (obj) {
+                CFRetain((__bridge CFTypeRef)(obj));
             }
         }
-        
-       id returnObj = [invocation bw_returnValue];
-//    });
-
+    }
+    
+    id returnObj = [invocation bw_returnValue];
     return returnObj;
 }
 

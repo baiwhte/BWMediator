@@ -42,6 +42,10 @@
     self.tabBar.translucent = NO;
     self.tabBar.backgroundColor = UIColor.whiteColor;
     self.tabBar.tintColor = UIColor.redColor;
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [BWScheduler performWithProtocol:@protocol(BWHomepageModuleService) selector:@selector(test:), 10];
+    });
 }
 
 @end

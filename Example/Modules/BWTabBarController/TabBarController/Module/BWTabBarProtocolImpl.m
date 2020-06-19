@@ -18,9 +18,9 @@ BW_KeyValue_EXPORT(@"BWTabBarModuleService", @"BWTabBarProtocolImpl", 0)
     return BWModulePriorityRequired;
 }
 
-- (dispatch_queue_t)methodQueue
+- (BOOL)isMainThread
 {
-    return dispatch_get_main_queue();
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey,id> *)launchOptions {

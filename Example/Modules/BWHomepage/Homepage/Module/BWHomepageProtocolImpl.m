@@ -32,9 +32,9 @@ BW_KeyValue_EXPORT(@"BWHomepageModuleService", @"BWHomepageProtocolImpl", 0)
 
 
 
-- (dispatch_queue_t)methodQueue
+- (BOOL)isMainThread
 {
-    return dispatch_get_main_queue();
+    return YES;
 }
 
 @end

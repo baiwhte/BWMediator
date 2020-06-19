@@ -23,9 +23,9 @@ BW_KeyValue_EXPORT(@"BWAccountModuleService", @"BWAccountProtocolImpl", 0)
     return 980;
 }
 
-- (dispatch_queue_t)methodQueue
+- (BOOL)isMainThread
 {
-    return dispatch_get_main_queue();
+    return YES;
 }
 
 @end

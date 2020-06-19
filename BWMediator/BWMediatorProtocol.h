@@ -34,27 +34,22 @@ FOUNDATION_EXPORT NSString *const BWErrorDomain;
 + (NSUInteger)priority;
 
 /**
-* The queue that will be used to call all exported methods. If omitted, this
-* will call on a default background queue, which is avoids blocking the main
-* thread.
+* A Boolean value that indicates whether the receiver is the main thread. If
+* omitted, this will call on a default background queue, which is avoids
+* blocking the main thread.
 *
 * If the methods in your module need to interact with UIKit methods, they will
 * probably need to call those on the main thread, as most of UIKit is main-
 * thread-only. You can tell BWMediator to call your module methods on the
 * main thread by returning a reference to the main queue, like this:
 *
-* - (dispatch_queue_t)methodQueue
+* - (BOOL)isMainThread
 * {
-*   return dispatch_get_main_queue();
+*   return YES;
 * }
 *
-* If you don't want to specify the queue yourself, but you need to use it
-* inside your class (e.g. if you have internal methods that need to dispatch
-* onto that queue), you can just add `@synthesize methodQueue = _methodQueue;`
-* and the bridge will populate the methodQueue property for you automatically
-* when it initializes the module.
 */
-@property (nonatomic, strong, readonly) dispatch_queue_t methodQueue;
+@property (nonatomic, assign, readonly) BOOL isMainThread;
 
 /**
 * if A class implementation , It's object will not be saved forever

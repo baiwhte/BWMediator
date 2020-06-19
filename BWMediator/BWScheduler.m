@@ -19,6 +19,7 @@
     NSAssert(protocol, @"protocol must not be nil");
     NSAssert(protocol_conformsToProtocol(protocol, NSProtocolFromString(@"BWMediatorProtocol")) ,
              @"protocol must be conforms BWMediatorProtocol");
+    
     id returnObj;
     va_list args;
     va_start(args, selector);
